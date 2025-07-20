@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Mehdi Mirza | Computer Engineering Student</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Slate -->
+    <!-- Application Structure Plan: A single-page application with a sticky top navigation bar for easy access to different sections (About, Skills, Projects, Experience). This structure was chosen over a simple linear document to allow recruiters to quickly jump to the information most relevant to them, enhancing usability and engagement. The flow starts with a summary, moves to visual skills, then detailed projects, and finally chronological experience, creating a logical narrative of capabilities. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Skill proficiency in programming languages -> Goal: Compare/Inform -> Viz: Horizontal Bar Chart (Chart.js/Canvas) -> Interaction: Hover tooltips -> Justification: Provides a quick, visual comparison of technical abilities, more engaging than a text list.
+        - Report Info: List of skills -> Goal: Organize/Inform -> Presentation: Categorized, styled tags/pills (HTML/Tailwind) -> Interaction: None -> Justification: Visually groups related skills, making them easy to scan and digest.
+        - Report Info: Projects -> Goal: Organize/Inform -> Presentation: Grid of interactive cards (HTML/Tailwind) -> Interaction: 'View on GitHub' button per card -> Justification: Modern, scannable layout that encourages exploration of the actual source code.
+        - Report Info: Education & Employment History -> Goal: Change/Organize -> Presentation: Vertical timeline (HTML/Tailwind) -> Interaction: None -> Justification: Intuitively displays chronological progression in a single, unified view, making career path clear.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712; /* A very dark blue-gray */
+            color: #f3f4f6; /* A light gray for text */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link-active {
+            color: #2dd4bf; /* Teal accent */
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5); /* Semi-transparent dark gray */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <nav id="navbar" class="sticky top-0 z-50 w-full glass-card shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold text-white">Ali Mehdi Mirza</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-teal-400">About</a>
+                        <a href="#skills" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-teal-400">Skills</a>
+                        <a href="#projects" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-teal-400">Projects</a>
+                        <a href="#experience" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-teal-400">Experience</a>
+                        <a href="#courses" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-teal-400">Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="pt-24 pb-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+                    Ali Mehdi Mirza
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-400">
+                    Computer Engineering Student Specializing in Data Processing and Web Development.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="mailto:alimehdimirza1010@gmail.com" class="bg-teal-600 text-white px-5 py-3 rounded-md text-base font-medium hover:bg-teal-700 transition">Email</a>
+                    <a href="https://www.linkedin.com/in/ali-mehdi-mirza-2ba8a624b" target="_blank" class="bg-gray-700 text-white px-5 py-3 rounded-md text-base font-medium hover:bg-gray-600 transition">LinkedIn</a>
+                    <a href="https://github.com/ali0786mehdi" target="_blank" class="bg-gray-700 text-white px-5 py-3 rounded-md text-base font-medium hover:bg-gray-600 transition">GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-gray-900">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-white mb-4">About Me</h2>
+                 <p class="text-center text-gray-400 text-lg leading-relaxed">
+                    Highly motivated and detail-oriented Computer Engineering student with a strong foundation in data processing, organization, and quality assurance. Proficient in handling and structuring data, with practical experience in data cleaning, formatting, and system updates. Eager to apply analytical skills and a meticulous approach to support data management workflows in a challenging internship role.
+                </p>
+            </div>
+        </section>
+        
+        <section id="skills" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">Technical Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-white mb-6 text-center">Programming Proficiency</h3>
+                        <div class="chart-container glass-card rounded-lg p-4">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-4">Data Management & Processing</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Data Preprocessing</span>
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Data Structuring</span>
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Data Filtering</span>
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Quality Checks</span>
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Data Entry</span>
+                                <span class="bg-teal-900/50 text-teal-300 text-sm font-medium px-3 py-1 rounded-full">Automated Workflows</span>
+                            </div>
+                        </div>
+                         <div>
+                            <h3 class="text-xl font-semibold text-white mb-4">Tools & Core Concepts</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">Microsoft Excel</span>
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">Python (Pandas)</span>
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">VS Code</span>
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">Jupyter Notebook</span>
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">Git & GitHub</span>
+                                <span class="bg-sky-900/50 text-sky-300 text-sm font-medium px-3 py-1 rounded-full">Attention to Detail</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Amazon UI Clone</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A frontend clone of the Amazon website, demonstrating meticulous attention to detail in replicating complex UIs and handling large volumes of visual data. Focuses on accuracy and quality control, skills transferable to data quality checks.</p>
+                        <a href="#" class="mt-auto text-center w-full bg-teal-600 text-white px-4 py-2 rounded-md font-medium hover:bg-teal-700 transition">View on GitHub</a>
+                    </div>
+                     <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">Bootcamp Project</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A significant full-stack project involving robust data management. Included extensive data input, validation, processing, and storage, ensuring data integrity across the application.</p>
+                        <a href="#" class="mt-auto text-center w-full bg-gray-700 text-white px-4 py-2 rounded-md font-medium hover:bg-gray-600 transition">View on GitHub</a>
+                    </div>
+                    <div class="glass-card rounded-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-semibold text-white mb-2">New Project 1</h3>
+                        <p class="text-gray-400 mb-4 flex-grow">A challenging project involving complex data structures and processing logic. Included development of scripts for automated data entry, system updates, and rigorous quality checks for consistency.</p>
+                        <a href="#" class="mt-auto text-center w-full bg-gray-700 text-white px-4 py-2 rounded-md font-medium hover:bg-gray-600 transition">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">Experience & Education</h2>
+                <div class="relative">
+                    <div class="absolute w-0.5 h-full bg-gray-700 left-1/2 -translate-x-1/2"></div>
+                    
+                    <div class="relative mb-8 flex justify-between items-center w-full">
+                        <div class="w-5/12"></div>
+                        <div class="z-10 bg-teal-500 rounded-full w-4 h-4"></div>
+                        <div class="w-5/12 glass-card rounded-lg p-4">
+                             <h3 class="font-semibold text-white">B.Tech, Computer Science</h3>
+                             <p class="text-sm text-gray-400">Vidyalankar Institute of Technology</p>
+                             <p class="text-xs text-gray-500 mt-1">Expected 2028</p>
+                        </div>
+                    </div>
+
+                    <div class="relative mb-8 flex justify-between items-center w-full flex-row-reverse">
+                        <div class="w-5/12"></div>
+                         <div class="z-10 bg-gray-500 rounded-full w-4 h-4"></div>
+                        <div class="w-5/12 glass-card rounded-lg p-4">
+                             <h3 class="font-semibold text-white">Assistant Teacher</h3>
+                             <p class="text-sm text-gray-400">Excellent-Avon Group Tuitions</p>
+                             <p class="text-xs text-gray-500 mt-1">Aug 2024 - Present</p>
+                             <p class="text-sm text-gray-300 mt-2">Automated evaluation workflows using spreadsheets.</p>
+                        </div>
+                    </div>
+                     <div class="relative mb-8 flex justify-between items-center w-full">
+                        <div class="w-5/12"></div>
+                         <div class="z-10 bg-gray-500 rounded-full w-4 h-4"></div>
+                        <div class="w-5/12 glass-card rounded-lg p-4">
+                             <h3 class="font-semibold text-white">B.Sc, Maths</h3>
+                             <p class="text-sm text-gray-400">University of Lucknow</p>
+                             <p class="text-xs text-gray-500 mt-1">2021 - 2024</p>
+                        </div>
+                    </div>
+                    <div class="relative mb-8 flex justify-between items-center w-full flex-row-reverse">
+                        <div class="w-5/12"></div>
+                         <div class="z-10 bg-gray-500 rounded-full w-4 h-4"></div>
+                        <div class="w-5/12 glass-card rounded-lg p-4">
+                             <h3 class="font-semibold text-white">Personal Tutor</h3>
+                             <p class="text-sm text-gray-400">Private Tuitions</p>
+                             <p class="text-xs text-gray-500 mt-1">Jul 2022 - Jun 2024</p>
+                             <p class="text-sm text-gray-300 mt-2">Designed customized lesson plans and assessments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="py-20 bg-gray-900">
+             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">Key Coursework</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
+                    <div class="glass-card rounded-lg p-4">
+                        <p class="font-semibold text-white">Machine Learning Specialization</p>
+                        <p class="text-sm text-gray-400">Coursera (Andrew Ng)</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4">
+                        <p class="font-semibold text-white">CS50 Python</p>
+                        <p class="text-sm text-gray-400">Harvard University</p>
+                    </div>
+                    <div class="glass-card rounded-lg p-4">
+                        <p class="font-semibold text-white">Data Structure and Algorithms</p>
+                        <p class="text-sm text-gray-400">CodeWithHarry</p>
+                    </div>
+                     <div class="glass-card rounded-lg p-4">
+                        <p class="font-semibold text-white">Java Object-Oriented Programming</p>
+                        <p class="text-sm text-gray-400">NPTEL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2025 Ali Mehdi Mirza. All Rights Reserved.</p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="mailto:alimehdimirza1010@gmail.com" class="text-gray-400 hover:text-teal-400 transition">Email</a>
+                <a href="https://www.linkedin.com/in/ali-mehdi-mirza-2ba8a624b" target="_blank" class="text-gray-400 hover:text-teal-400 transition">LinkedIn</a>
+                <a href="https://github.com/ali0786mehdi" target="_blank" class="text-gray-400 hover:text-teal-400 transition">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Python', 'Java', 'C'],
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: [90, 85, 80],
+                        backgroundColor: 'rgba(45, 212, 191, 0.6)',
+                        borderColor: 'rgba(45, 212, 191, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#9ca3af' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#d1d5db', font: { size: 14 } },
+                             grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-link-active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('nav-link-active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
